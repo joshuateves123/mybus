@@ -42,12 +42,6 @@ public class admin_staffEdit extends javax.swing.JFrame {
         }else{
             type.setSelectedItem("Staff");
         }
-        
-        if((model.getValueAt(rowid, 8).toString()).equals("Active")){
-            status.setSelectedItem("Active");
-        }else{
-            status.setSelectedItem("Pending");
-        }
     }
     
     public void updateData(String fname,String lname,String uname,String email, String num,String pass,String type,String status){
@@ -111,6 +105,8 @@ public class admin_staffEdit extends javax.swing.JFrame {
         pass = new javax.swing.JTextField();
         type = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
+        status = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -268,7 +264,17 @@ public class admin_staffEdit extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(280, 500, 100, 29);
+        jButton1.setBounds(280, 520, 100, 29);
+
+        status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Active", "Inactive" }));
+        jPanel1.add(status);
+        status.setBounds(170, 480, 210, 30);
+
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(158, 200, 185));
+        jLabel8.setText("Status:");
+        jPanel1.add(jLabel8);
+        jLabel8.setBounds(40, 490, 100, 17);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -327,7 +333,7 @@ public class admin_staffEdit extends javax.swing.JFrame {
         }else if(isnotNum(num.getText())){
             JOptionPane.showMessageDialog(null, "Invalid contact number!");
         }else{
-            addData( fname.getText(),lname.getText(),uname.getText(),email.getText(), num.getText(),pass.getText(),(String)type.getSelectedItem());
+            updateData( fname.getText(),lname.getText(),uname.getText(),email.getText(), num.getText(),pass.getText(),(String)type.getSelectedItem(),(String)status.getSelectedItem());
         }
         this.dispose();
 
@@ -397,6 +403,7 @@ public class admin_staffEdit extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -408,6 +415,7 @@ public class admin_staffEdit extends javax.swing.JFrame {
     private javax.swing.JTextField lname;
     private javax.swing.JTextField num;
     private javax.swing.JTextField pass;
+    private javax.swing.JComboBox<String> status;
     private javax.swing.JComboBox<String> type;
     private javax.swing.JTextField uname;
     // End of variables declaration//GEN-END:variables

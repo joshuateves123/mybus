@@ -56,7 +56,7 @@ public class admin_routes extends javax.swing.JFrame {
         try{
             TableModel model = table.getModel();
             dbConnector connector = new dbConnector();
-            String query = "SELECT * FROM tbl_routes";
+            String query = "SELECT * FROM tbl_routes WHERE r_status != 'Archived'";
             ResultSet rs = connector.getData(query);
             table.setModel(DbUtils.resultSetToTableModel(rs));
             
@@ -76,11 +76,6 @@ public class admin_routes extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        namedisp = new javax.swing.JLabel();
-        date_disp = new javax.swing.JLabel();
-        time_disp = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -92,8 +87,12 @@ public class admin_routes extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jPanel11 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        namedisp = new javax.swing.JLabel();
+        date_disp = new javax.swing.JLabel();
+        time_disp = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jPanel12 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
@@ -114,33 +113,6 @@ public class admin_routes extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(39, 40, 41));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel4.setBackground(new java.awt.Color(97, 103, 122));
-        jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(216, 217, 218), 1, true));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons8-admin-70 (1).png"))); // NOI18N
-        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 80, 60));
-
-        namedisp.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        namedisp.setForeground(new java.awt.Color(255, 255, 255));
-        namedisp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        namedisp.setText("System Administrator");
-        jPanel4.add(namedisp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, -1, -1));
-
-        date_disp.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        date_disp.setForeground(new java.awt.Color(255, 255, 255));
-        date_disp.setText("dd/mm/yyyy");
-        jPanel4.add(date_disp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, -1));
-
-        time_disp.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        time_disp.setForeground(new java.awt.Color(255, 255, 255));
-        time_disp.setText("hh-mm-ss");
-        jPanel4.add(time_disp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 150, -1));
-
-        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 230, 120));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/BUSWAYZ__1_-removebg-preview.png"))); // NOI18N
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 250, 250));
@@ -165,7 +137,7 @@ public class admin_routes extends javax.swing.JFrame {
         jLabel2.setText(" Logout");
         jPanel6.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 5, -1, 30));
 
-        jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, 270, 40));
+        jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 270, 40));
 
         jPanel7.setBackground(new java.awt.Color(39, 40, 41));
         jPanel7.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -255,27 +227,40 @@ public class admin_routes extends javax.swing.JFrame {
 
         jPanel2.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 270, 40));
 
-        jPanel11.setBackground(new java.awt.Color(39, 40, 41));
-        jPanel11.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel11MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPanel11MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jPanel11MouseExited(evt);
+        jPanel4.setBackground(new java.awt.Color(97, 103, 122));
+        jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(216, 217, 218), 1, true));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons8-admin-70 (1).png"))); // NOI18N
+        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 80, 60));
+
+        namedisp.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        namedisp.setForeground(new java.awt.Color(255, 255, 255));
+        namedisp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        namedisp.setText("System Administrator");
+        jPanel4.add(namedisp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, -1));
+
+        date_disp.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        date_disp.setForeground(new java.awt.Color(255, 255, 255));
+        date_disp.setText("dd/mm/yyyy");
+        jPanel4.add(date_disp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
+
+        time_disp.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        time_disp.setForeground(new java.awt.Color(255, 255, 255));
+        time_disp.setText("hh-mm-ss");
+        jPanel4.add(time_disp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 150, -1));
+
+        jButton1.setText("View Profile");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
-        jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 210, -1));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/icons8-setting-25.png"))); // NOI18N
-        jLabel6.setText(" Settings");
-        jPanel11.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 5, -1, 30));
-
-        jPanel2.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 270, 40));
+        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 230, 120));
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(-10, 0, 280, 590);
@@ -352,7 +337,7 @@ public class admin_routes extends javax.swing.JFrame {
         jPanel12.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, 80, 30));
 
         jButton6.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jButton6.setText("DELETE");
+        jButton6.setText("ARCHIVE");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -390,12 +375,6 @@ public class admin_routes extends javax.swing.JFrame {
         out.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jPanel6MouseClicked
-
-    private void jPanel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel11MouseClicked
-        admin_settings open = new admin_settings();
-        open.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jPanel11MouseClicked
 
     private void jPanel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel10MouseClicked
         admin_staff open = new admin_staff();
@@ -444,14 +423,6 @@ public class admin_routes extends javax.swing.JFrame {
     private void jPanel10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel10MouseExited
         jPanel10.setBackground(new Color(39, 40, 41));
     }//GEN-LAST:event_jPanel10MouseExited
-
-    private void jPanel11MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel11MouseEntered
-        jPanel11.setBackground(new Color(97, 103, 122));
-    }//GEN-LAST:event_jPanel11MouseEntered
-
-    private void jPanel11MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel11MouseExited
-        jPanel11.setBackground(new Color(39, 40, 41));
-    }//GEN-LAST:event_jPanel11MouseExited
 
     private void jPanel6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseEntered
         jPanel6.setBackground(new Color(97, 103, 122));
@@ -513,17 +484,23 @@ public class admin_routes extends javax.swing.JFrame {
         if(rowid != -1){
             Object value = model.getValueAt(rowid, 0);
             String id = value.toString();
-            int confirm = JOptionPane.showConfirmDialog(null,"Are you sure to Delete ID "+id +"?");
+            int confirm = JOptionPane.showConfirmDialog(null,"Are you sure to Archive ID "+id +"?");
             if(confirm == JOptionPane.YES_OPTION){
                 dbConnector connect = new dbConnector();
-                int r_id = Integer.parseInt(id);
-                connect.deleteData(r_id, "tbl_routes", "r_id");
+                int deleteid = Integer.parseInt(id);
+                connect.updateData("UPDATE tbl_bus SET b_status = 'Archived' WHERE b_id = "+deleteid);
             }
             displayTable();
         }else{
             JOptionPane.showMessageDialog(this, "Please select a route!");
         }
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        admin_profile open = new admin_profile();
+        open.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -565,6 +542,7 @@ public class admin_routes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel date_disp;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -575,13 +553,11 @@ public class admin_routes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;

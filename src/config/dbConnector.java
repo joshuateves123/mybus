@@ -30,19 +30,68 @@ public class dbConnector {
     System.out.println("Can't connect to the database:" +ex.getMessage());
     }
     }
-    
-    public ResultSet getData(String sql)throws SQLException {
-        Statement stmt = connect.createStatement();
-        ResultSet rst = stmt.executeQuery(sql);
-        return rst;
-    }
-public int insertData(String sql) throws SQLException {
+    //Function to retrieve data
+        public ResultSet getData(String sql) throws SQLException{
+            Statement stmt = connect.createStatement();
+            ResultSet rst = stmt.executeQuery(sql);
+            return rst;
+        }
+        
+        public int insertData(String sql) throws SQLException {
         Statement stmt = connect.createStatement();
         int rowsAffected = stmt.executeUpdate(sql);
         return rowsAffected;
     }
-
-public void deleteData(int id, String table, String var){
+        
+        public void updateData(String sql){
+            int result;
+            try{
+                PreparedStatement pst = connect.prepareStatement(sql);
+                int rowsUpdated = pst.executeUpdate();
+                if(!(rowsUpdated>0)){
+                    System.out.println("Data Update Failed!");
+                }
+            }catch(SQLException ex){
+                System.out.println("Connection Error: "+ex);
+            }
+        }
+        
+        public int columnCount(String table) {
+        int column = 0;
+        String var = null;
+        
+        if(table.equals("tbl_users")){
+            var = "u_";
+        }else if(table.equals("tbl_bus")){
+            var = "b_";
+        }else if(table.equals("tbl_routes")){
+            var = "r_";
+        }
+        
+        try {
+            String query = "SELECT COUNT(*) FROM " + table + " WHERE "+var+"status != 'Archived'";
+            ResultSet rs = getData(query);
+            if (rs.next()) {
+                column = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return column;
+    }
+        
+        public static boolean checkData(String b, String c, String d){
+        dbConnector connector = new dbConnector();
+        try{
+            String query = "SELECT * FROM "+b+"  WHERE "+c+" = '" +d + "'";
+            ResultSet resultSet = connector.getData(query);
+            return resultSet.next();
+        }catch (SQLException ex) {
+            return false;
+        }
+    }
+        
+        public void deleteData(int id, String table, String var){
         try{
             PreparedStatement pst = connect.prepareStatement("DELETE FROM "+table+" WHERE "+var+" = ?");
             pst.setInt(1,id);
@@ -54,25 +103,8 @@ public void deleteData(int id, String table, String var){
             }
             pst.close();
         }catch(SQLException ex){
-                System.out.println("Connection Error: "+ex);
+                JOptionPane.showMessageDialog(null, "Deleted Unsuccessfully. \nThis data is currently associated with existing transactions.");
         }
     }
-
-public void updateData(String sql){
-            int result;
-            try{
-                PreparedStatement pst = connect.prepareStatement(sql);
-                int rowsUpdated = pst.executeUpdate();
-                if(!(rowsUpdated>0)){
-                    System.out.println("Data Update Failed!");
-                }else{
-                    JOptionPane.showMessageDialog(null, "Updated Successfully!");
-                }
-            }catch(SQLException ex){
-                System.out.println("Connection Error: "+ex);
-            }
-        }
-
-
 
 }

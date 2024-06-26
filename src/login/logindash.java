@@ -12,12 +12,8 @@ import config.passwordHasher;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import staff.staff_book;
-import staff.staff_booking;
 
 /**
  *

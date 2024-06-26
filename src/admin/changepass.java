@@ -6,31 +6,18 @@
 package admin;
 
 import config.dbConnector;
-import static java.lang.reflect.Array.set;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import login.logindash;
 
 /**
  *
  * @author w10
  */
 public class changepass extends javax.swing.JFrame {
-    public String uname;
-    public changepass(String name) {
+    public changepass() {
         initComponents();
-        uname = name;
-        displayName(getData("u_fname","tbl_users", "u_username", uname)+ " " + getData("u_lname","tbl_users", "u_username", uname));
     }
 
-    changepass() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    public void displayName(String uname){
-        username.setText(uname);
-    }
-    
     public static String getData(String a,String b, String c, String d){
         dbConnector connector = new dbConnector();
         String returnString = null;
@@ -166,7 +153,7 @@ public class changepass extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new changepass("joshuateves123").setVisible(true);
+                new changepass().setVisible(true);
             }
         });
     }

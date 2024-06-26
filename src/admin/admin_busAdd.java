@@ -175,6 +175,35 @@ public class admin_busAdd extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if(name.getText().isEmpty()|| model.getText().isEmpty() || capacity.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please fill-up all fields!");
+        }else{
+            if(checkData(name.getText())){
+                JOptionPane.showMessageDialog(null, "Bus Name Already Taken!");
+            }else{
+                String insertQuery = "INSERT INTO tbl_bus (b_name, b_model, b_capacity,b_status) VALUES ('"+name.getText()+"','"+model.getText()+"','"+capacity.getText()+"','"+(String)status.getSelectedItem()+"')";
+                try {
+                    dbConnector connect = new dbConnector();
+                    int rowsInserted = connect.insertData(insertQuery);
+                    if (rowsInserted > 0) {
+                        JOptionPane.showMessageDialog(null, "Bus Added Successfully!");
+                        this.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Failed to add Bus!");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println("Error inserting data: " + ex.getMessage());
+                }
+            }
+        }
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void modelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_modelActionPerformed
@@ -186,37 +215,6 @@ public class admin_busAdd extends javax.swing.JFrame {
     private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nameActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(name.getText().isEmpty()|| model.getText().isEmpty() || capacity.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Please fill-up all fields!");
-        }else{
-            if(checkData(name.getText())){
-            JOptionPane.showMessageDialog(null, "Bus Name Already Taken!");
-        }else{
-            String insertQuery = "INSERT INTO tbl_bus (b_name, b_model, b_capacity,b_status) VALUES ('"+name.getText()+"','"+model.getText()+"','"+capacity.getText()+"','"+(String)status.getSelectedItem()+"')";
-        try {
-            dbConnector connect = new dbConnector();
-            int rowsInserted = connect.insertData(insertQuery);
-            if (rowsInserted > 0) {
-                JOptionPane.showMessageDialog(null, "Bus Added Successfully!");
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(null, "Failed to add Bus!");
-            }
-        } catch (SQLException ex) {
-            System.out.println("Error inserting data: " + ex.getMessage());
-        }
-        }
-        }
-           
-        
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

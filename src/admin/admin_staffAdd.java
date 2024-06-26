@@ -8,8 +8,12 @@ package admin;
 import login.*;
 import admin.adminDash;
 import config.dbConnector;
+import config.passwordHasher;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -27,18 +31,22 @@ public class admin_staffAdd extends javax.swing.JFrame {
     }
     
     public void addData(String fname, String lname, String username, String email, String num, String pass,String type){
-        dbConnector connector = new dbConnector();
-        String insertQuery = "INSERT INTO tbl_users (u_fname, u_lname, u_username, u_email, u_num, u_password, u_type, u_status) VALUES ('"+fname+"','"+lname+"','"+username+"',"
-                + "'"+email+"','"+num+"','"+pass+"','"+type+"', 'Active')";
         try {
-            int rowsInserted = connector.insertData(insertQuery);
-            if (rowsInserted > 0) {
-                JOptionPane.showMessageDialog(null, "Registered Successfully!");
-            } else {
-                JOptionPane.showMessageDialog(null, "Register Failed!");
+            dbConnector connector = new dbConnector();
+            String insertQuery = "INSERT INTO tbl_users (u_fname, u_lname, u_username, u_email, u_num, u_password, u_type, u_status) VALUES ('"+fname+"','"+lname+"','"+username+"',"
+                    + "'"+email+"','"+num+"','"+passwordHasher.hashPassword(pass)+"','"+type+"', 'Active')";
+            try {
+                int rowsInserted = connector.insertData(insertQuery);
+                if (rowsInserted > 0) {
+                    JOptionPane.showMessageDialog(null, "Registered Successfully!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Register Failed!");
+                }
+            } catch (SQLException ex) {
+                System.out.println("Error inserting data: " + ex.getMessage());
             }
-        } catch (SQLException ex) {
-            System.out.println("Error inserting data: " + ex.getMessage());
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(admin_staffAdd.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -5,9 +5,8 @@
         <group>
             <file>file:/C:/Users/w10/Documents/NetBeansProjects/mybus/src/login/registerdash.java</file>
             <file>file:/C:/Users/w10/Documents/NetBeansProjects/mybus/src/config/Session.java</file>
+            <file>file:/C:/Users/w10/Documents/NetBeansProjects/mybus/src/config/PanelPrinter.java</file>
             <file>file:/C:/Users/w10/Documents/NetBeansProjects/mybus/src/media/BUSWAYZ%20(2).gif</file>
-            <file>file:/C:/Users/w10/Documents/NetBeansProjects/mybus/src/staff/staff_booking.java</file>
-            <file>file:/C:/Users/w10/Documents/NetBeansProjects/mybus/src/staff/staff_bus.java</file>
             <file>file:/C:/Users/w10/Documents/NetBeansProjects/mybus/src/admin/admin_bus.java</file>
             <file>file:/C:/Users/w10/Documents/NetBeansProjects/mybus/src/staff/staff_book.java</file>
             <file>file:/C:/Users/w10/Documents/NetBeansProjects/mybus/src/login/logindash.java</file>
@@ -17,11 +16,13 @@
             <file>file:/C:/Users/w10/Documents/NetBeansProjects/mybus/src/admin/admin_staff.java</file>
             <file>file:/C:/Users/w10/Documents/NetBeansProjects/mybus/src/config/dbConnector.java</file>
             <file>file:/C:/Users/w10/Documents/NetBeansProjects/mybus/src/admin/admin_routes.java</file>
+            <file>file:/C:/Users/w10/Documents/NetBeansProjects/mybus/src/config/TablePrinter.java</file>
             <file>file:/C:/Users/w10/Documents/NetBeansProjects/mybus/src/admin/adminDash.java</file>
             <file>file:/C:/Users/w10/Documents/NetBeansProjects/mybus/src/media/BUSWAYZ%20(1).gif</file>
-            <file>file:/C:/Users/w10/Documents/NetBeansProjects/mybus/src/staff/staff_routes.java</file>
-            <file>file:/C:/Users/w10/Documents/NetBeansProjects/mybus/src/admin/admin_settings.java</file>
+            <file>file:/C:/Users/w10/Documents/NetBeansProjects/mybus/src/staff/staff_profile.java</file>
+            <file>file:/C:/Users/w10/Documents/NetBeansProjects/mybus/src/admin/admin_records.java</file>
             <file>file:/C:/Users/w10/Documents/NetBeansProjects/mybus/src/admin/admin_staffAdd.java</file>
+            <file>file:/C:/Users/w10/Documents/NetBeansProjects/mybus/src/admin/admin_profile.java</file>
             <file>file:/C:/Users/w10/Documents/NetBeansProjects/mybus/src/config/passwordHasher.java</file>
             <file>file:/C:/Users/w10/Documents/NetBeansProjects/mybus/src/admin/admin_busAdd.java</file>
             <file>file:/C:/Users/w10/Documents/NetBeansProjects/mybus/src/admin/admin_routesEdit.java</file>
